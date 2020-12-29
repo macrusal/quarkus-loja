@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  postgres_loja:
+    container_name: postgres_loja
+    image: library/postgres:13.1
+    environment:
+      POSTGRES_USER: loja
+      POSTGRES_PASSWORD: loja
+    ports:
+    - "5432:5432"
