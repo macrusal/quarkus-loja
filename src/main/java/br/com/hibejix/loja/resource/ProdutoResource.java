@@ -2,6 +2,7 @@ package br.com.hibejix.loja.resource;
 
 import br.com.hibejix.loja.domain.Produto;
 import br.com.hibejix.loja.domain.dto.ProdutoDTO;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -29,12 +30,14 @@ import java.util.Optional;
 public class ProdutoResource {
 
     @GET
+    @Tag(name = "produto")
     public List<Produto> get() {
         return Produto.listAll();
     }
 
     @POST
     @Transactional
+    @Tag(name = "produto")
     public Response post(ProdutoDTO dto) {
         Produto produto = new Produto();
         produto.nome = dto.nome;
@@ -46,6 +49,7 @@ public class ProdutoResource {
     @PUT
     @Path("{id}")
     @Transactional
+    @Tag(name = "produto")
     public void put(@PathParam("id") Long id, ProdutoDTO dto) {
         Optional<Produto> produtoOptional = Produto.findByIdOptional(id);
         if(produtoOptional.isEmpty()) {
@@ -60,6 +64,7 @@ public class ProdutoResource {
     @DELETE
     @Path("{id}")
     @Transactional
+    @Tag(name = "produto")
     public void delete(@PathParam("id") Long id) {
         Optional<Produto> produtoOptional = Produto.findByIdOptional(id);
         produtoOptional.ifPresentOrElse(Produto::delete, () -> {

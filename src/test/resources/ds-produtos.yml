@@ -1,0 +1,4 @@
+produto:
+  - id: 1
+    nome: produto teste
+    valor: 100.00

@@ -17,7 +17,7 @@ import java.util.Date;
  * @project quarkus-loja
  */
 @Entity
-@Table(name = "produto")
+@Table(name = "PRODUTO", schema = "public")
 public class Produto extends PanacheEntityBase {
 
     @Id
