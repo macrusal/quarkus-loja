@@ -1,6 +1,7 @@
 package br.com.hibejix.loja.resource;
 
 import br.com.hibejix.loja.domain.Produto;
+import br.com.hibejix.loja.domain.dto.ProdutoDTO;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -34,21 +35,25 @@ public class ProdutoResource {
 
     @POST
     @Transactional
-    public Response post(Produto dto) {
-        dto.persist();
+    public Response post(ProdutoDTO dto) {
+        Produto produto = new Produto();
+        produto.nome = dto.nome;
+        produto.valor = dto.valor;
+        produto.persist();
         return Response.status(Status.CREATED).build();
     }
 
     @PUT
     @Path("{id}")
     @Transactional
-    public void put(@PathParam("id") Long id, Produto dto) {
+    public void put(@PathParam("id") Long id, ProdutoDTO dto) {
         Optional<Produto> produtoOptional = Produto.findByIdOptional(id);
         if(produtoOptional.isEmpty()) {
             throw new NotFoundException("Produto não existe");
         }
         Produto produto = produtoOptional.get();
         produto.nome = dto.nome;
+        produto.valor = dto.valor;
         produto.persist();
     }
 
