@@ -60,6 +60,5 @@ API Loja
             └── ds-produtos.yml
 ```
 
-
 # Swagger
 http://localhost:8901/swagger-ui.html
